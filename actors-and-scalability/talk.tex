@@ -199,12 +199,33 @@
   \titlepage
 \end{frame}
 
+\begin{frame}
+  \frametitle{Vorstellung - Kurze Biografie}
+  \begin{itemize}
+  \item Ausschnitt Europakarte
+  \item Stationen, mit Pfeil verknüpft: Münster/Cambridge/Saarbrücken/Frankfurt
+  \item Mit Jahreszahlen und Uni/Stadt/DW Logos
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vorstellung - Eine etwas andere Landschaft}
+  \begin{itemize}
+  \item 3 Themenfelder
+  \item Theorie: Type Theory, Logic, Proof Assistants, Programmiersprachen-Theorie, Functional Programming
+  \item Anwendung: Übersetzer und Toolbau, Nebenläufigkeit, Simulation
+  \item DevOps: Linux, Virtualisierung, Container, Docker, K8s, Web Services
+  \item Berührungspunkt: Scala und das Aktorenmodell
+  \item Logos nutzen
+  \end{itemize}
+\end{frame}
+
 % \begin{frame}
 %   \frametitle{Overview}
 %   \tableofcontents
 % \end{frame}
 
-\section{Variants of System F}
+% \section{Variants of System F}
 
 % \begin{frame}
 %   \frametitle{System F \mycite{Girard '72} / PTLC \mycite{Reynolds '74}}
@@ -429,6 +450,29 @@
   \end{center}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Aktorenmodell: Grundkonzept}
+  \begin{itemize}
+  \item only local state
+  \item message passing with weak but simple guarantees
+  \item dynamic topology
+  \item abstracts away from thread model, which is closer to the machine and the notion of a process
+  \item advantages: close to human model, no synchronisation necessary, easier to reason about
+  \item for now: we probably want some infrastructure for maintaining an actor system \ldots more later
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Anwendungsbeispiel: simLucid -- BA thesis}
+  \begin{itemize}
+  \item use cover diagram from thesis
+  \item short intro to dataflow / Lucid (mention that modern functional languages are better suited to these kind of stream programs)
+  \item explain dataflow semantics, relate to actor model, highlight scalable design
+  \item sketch solution, start from AST, only drop existence of FE/parser as hint
+  \item also point out the dynamic unfolding of the network
+  \end{itemize}
+\end{frame}
+
 % \begin{frame}
 %   \frametitle{Coq -- Representation}
 %   \begin{itemize}
@@ -622,8 +666,36 @@
     \begin{Large}
       \hl{-- Skalierbarkeit --}
     \end{Large}\\[2em]
-    Container, K8s, Wonderland
+    Container, K8s, Wonderland, Akka (Streams)
   \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Wir treffen alte Bekannte \ldots}
+  \begin{itemize}
+  \item Aktoren: verteilte Anwendung, Micro Services: verteilte Systeme; beides nutzt message passing für koordinierung
+  \item big data processing: map reduce/hadoop/spark; nutzt simple funktionale primitive: map und fold
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Anwendungsbeispiel: DW Solution}
+  \begin{itemize}
+  \item stay very highlevel: cluster of microservices to index data and make it searchable without hitting original sources
+  \item mention that we deploy using docker/k8s/helm
+  \item mention that we can hook spark and kafka into the system to perform certain analyses and extract transient data
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Anwendungsbeispiel: Wonderland SImulator}
+  \begin{itemize}
+  \item stay highlevel: generate testdata for the usecase: theme park simulation
+  \item main idea: certain info only available from joining tables from multiple data-sources and comparing related subsets of events on an event stream
+  \item goal: generate base data and event stream that exhibit these anomalies
+  \item observation: plain random sampling is not good enough, hence a theme park simulator
+  \item current implementation (actually only planned, but don't say): collection of actors, representing visitors that each run a probabilistic finite state automaton
+  \end{itemize}
 \end{frame}
 
 % \begin{frame}
