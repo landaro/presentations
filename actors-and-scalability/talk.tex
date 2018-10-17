@@ -10,6 +10,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern} % HACK! This is a workaround for a bug in beamer that triggers in texlive 2017 with \tiny font, which in beamer goes to the untested/unsupported <5pt font (font generation of ecss0400 fails)
 
+\usepackage{amsmath}
 
 % Times/Helvetica/Courier combination
 %\usepackage{mathptmx}
@@ -51,11 +52,19 @@
 \definecolor{sbmcyan}{RGB}{038, 116, 176}
 \definecolor{sblcyan}{RGB}{109, 182, 218}
 \definecolor{greenblue}{RGB}{0, 127, 79}
+\definecolor{darkred}{RGB}{128, 0, 0}
+\definecolor{darkyellow}{RGB}{128, 128, 0}
 
 % Packages specific to the content
 \usepackage{mathpartir}
 \usepackage{xspace}
 % \usepackage{ntheorem}
+
+% for Inkscape overlays
+\usepackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{\paperwidth}
+\setlength{\TPVertModule}{\paperheight}
+\textblockorigin{0mm}{0mm}
 
 %%% MY MACROS, copy old if needed
 
@@ -157,6 +166,7 @@
 % G Symbols
 \newcommand{\gProp}{\ensuremath{\mathbf{Prop}}}
 
+\DeclareMathOperator\ham{ham}
 
 %%% END MACROS
 
@@ -200,24 +210,39 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Vorstellung - Kurze Biografie}
-  \begin{itemize}
-  \item Ausschnitt Europakarte
-  \item Stationen, mit Pfeil verknüpft: Münster/Cambridge/Saarbrücken/Frankfurt
-  \item Mit Jahreszahlen und Uni/Stadt/DW Logos
-  \end{itemize}
+  \frametitle{Wer bin ich, \ldots}
+  \begin{columns}
+    \column{0.48\linewidth}
+    \structure{Gebürtiger Münsteraner}
+    \begin{center}
+      \includegraphics[scale=0.15]{img/bicycle}
+    \end{center}
+    \structure{Informatik Studium / Promotion}
+    \begin{itemize}
+    \item 2010 -- BA, Cambridge, UK
+    \item 2013 -- MSc, Saarbrücken
+    \item \textit{bald} -- PhD, Saarbrücken
+    \end{itemize}
+    \structure{Wechsel in die Wirtschaft}
+    \begin{itemize}
+    \item Seit Juni -- dataWerks GmbH
+    \end{itemize}
+    \column{0.48\linewidth}
+    \centering
+    \includegraphics[scale=0.30]{img/europe-jk}
+  \end{columns}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Vorstellung - Eine etwas andere Landschaft}
-  \begin{itemize}
-  \item 3 Themenfelder
-  \item Theorie: Type Theory, Logic, Proof Assistants, Programmiersprachen-Theorie, Functional Programming
-  \item Anwendung: Übersetzer und Toolbau, Nebenläufigkeit, Simulation
-  \item DevOps: Linux, Virtualisierung, Container, Docker, K8s, Web Services
-  \item Berührungspunkt: Scala und das Aktorenmodell
-  \item Logos nutzen
-  \end{itemize}
+  \frametitle{\ldots und wofür schlägt mein Herz?}
+  \begin{center}
+    \includegraphics<1>[scale=0.4]{img/mmV1}
+    \includegraphics<2>[scale=0.4]{img/mmV2}
+    \includegraphics<3>[scale=0.4]{img/mmV3}
+    \includegraphics<4>[scale=0.4]{img/mmV4}
+    \includegraphics<5>[scale=0.4]{img/mmV5}
+    \includegraphics<6>[scale=0.4]{img/mmV6}
+  \end{center}
 \end{frame}
 
 % \begin{frame}
@@ -462,10 +487,22 @@
   \end{itemize}
 \end{frame}
 
+
+
 \begin{frame}
-  \frametitle{Anwendungsbeispiel: simLucid -- BA thesis}
+  \frametitle{Die Hamming Sequenz als Datenfluss-Diagram}
+  Entspricht der gewollten Semantik eines Lucid Programs.
+  \begin{center}
+    \includegraphics[scale=0.30]{img/hamming}
+    \begin{align*}
+      \ham &= 1, {\color{sbdcyan}2}, {\color{sbmcyan}3}, {\color{sblcyan}4}, {\color{greenblue}5}, {\color{darkred}6}, {\color{darkyellow}8}, 9, 10, 12, 15, \ldots\\
+      \ham x \, 2 &= {\color{sbdcyan}2}, {\color{sblcyan}4}, {\color{darkred}6}, {\color{darkyellow}8}, 10, 12, 16, \ldots\\
+      \ham x \, 3 &= {\color{sbmcyan}3}, {\color{darkred}6}, 9, 12, 15, 18, 24, \ldots\\
+      \ham x \, 5 &= {\color{greenblue}5}, 10, 15, 20, 25, 30, 40, \ldots\\
+    \end{align*}
+    \textit{Anm.: Heute würde man hierfür eher eine rekursive Definition in einer funktionalen Sprache wie z.B.\ Haskell wählen.}
+  \end{center}
   \begin{itemize}
-  \item use cover diagram from thesis
   \item short intro to dataflow / Lucid (mention that modern functional languages are better suited to these kind of stream programs)
   \item explain dataflow semantics, relate to actor model, highlight scalable design
   \item sketch solution, start from AST, only drop existence of FE/parser as hint
