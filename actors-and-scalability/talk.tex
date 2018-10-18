@@ -445,7 +445,7 @@
 %   \end{itemize}
 % \end{frame}
 
-\section{Aktorenmodell}
+
 
 % \begin{frame}
 %   \frametitle{Formalising the Proof}
@@ -466,27 +466,94 @@
 %   \end{itemize}
 % \end{frame}
 
+\section{Aktorenmodell}
+
 \begin{frame}
   \begin{center}
     \begin{Large}
       \hl{-- Aktorenmodell --}
-    \end{Large}\\[2em]
-    basic principles, message passing, concurrency abstraction
+    \end{Large}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Aktorenmodell: Grundkonzept}
+  \frametitle{Ziel: Optimale Auslastung von Resourcen}
   \begin{itemize}
-  \item only local state
-  \item message passing with weak but simple guarantees
-  \item dynamic topology
-  \item abstracts away from thread model, which is closer to the machine and the notion of a process
-  \item advantages: close to human model, no synchronisation necessary, easier to reason about
-  \item for now: we probably want some infrastructure for maintaining an actor system \ldots more later
+  \item \textbf{Früher:} Multi-Core CPUs, heterogene Prozessor Architektur, Hyperthreading
+  \item \textbf{Heute:} Vernetzte Systeme, Cloud
+    \begin{itemize}
+    \item Physisch: Server, Workstation, Cluster
+    \item Virtuell: Dünner Anwendungs-Container bis zum vollvirtualisierten OS
+    \end{itemize}
   \end{itemize}
+  \pause
+  \structure{$\Rightarrow$ Wir brauchen Modelle für Nebenläufigkeit ($=$ logische Parallelität)}
+  \vspace{1em}
+  \pause
+  \begin{block}{Relevante Metriken:}
+    \begin{itemize}
+    \item Verständlichkeit / Ease of Use
+    \item Effizienz
+    \item Skalierbarkeit / Elastizität
+    \item Fehleranfälligkeit
+    \end{itemize}
+  \end{block}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Zwei Modelle: Threads vs.\ Actors}
+  \begin{columns}
+    \column{0.48\linewidth}
+    \begin{center}
+      \includegraphics[scale=0.2]{img/threads}
+    \end{center}
+    \begin{itemize}
+    \item Geteilter Speicher
+    \item Erfordert Synchronisation
+    \item Näher an der Maschine
+    \end{itemize}
+    \column{0.48\linewidth}
+    \begin{center}
+      \includegraphics[scale=0.2]{img/actors}
+    \end{center}
+    \begin{itemize}
+    \item Lokaler, privater Speicher
+    \item Nachrichtenaustausch (async)
+    \item Näher am Menschen
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Evaluierung}
+  \begin{itemize}
+  \item Moderne CPUs haben lokale Caches an jedem Kern
+  \item Verteiltes Speichermodell skaliert zu Cloud-Anwendungen
+  \item Nachrichtenaustausch ist Grundbaustein (TCP, REST, Mail, \ldots)
+  \item Asynchroner Nachrichtenaustausch ist intuitiv
+  \item Aktoren sind logisch geschlossene Einheiten
+    \begin{itemize}
+    \item erleichtert dynamische Topologien
+    \item erleichtert Programmierung (weniger Bugs)
+    \end{itemize}
+  \item Einziger Nachteil: Meist etwas weniger performant aufgrund der zusätzlich erforderlichen Kommunikationsebene.
+  \end{itemize}
+  \vspace{1em}
+  \pause
+  \begin{block}{Fazit}
+    Das Aktorenmodell ist in fast allen Belangen die bessere Wahl.
+  \end{block}
+\end{frame}
+
+\section{simLucid}
+
+\begin{frame}
+  \begin{center}
+    \begin{Large}
+      \hl{-- Fallstudie: simLucid --}
+    \end{Large}
+  \end{center}
+\end{frame}
 
 
 \begin{frame}
