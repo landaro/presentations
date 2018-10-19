@@ -189,7 +189,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Metadata
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[Aktoren und die Cloud]{Aktoren und die Cloud}
+\title[Actors]{Actors}
 %\subtitle{}
 
 \author[Jonas Kaiser]{
@@ -217,25 +217,24 @@
 \begin{frame}
   \frametitle{Wer bin ich, \ldots}
   \begin{columns}
-    \column{0.48\linewidth}
+    \column{0.53\linewidth}
     \structure{Gebürtiger Münsteraner}
     \begin{center}
       \includegraphics[scale=0.15]{img/bicycle}
     \end{center}
     \structure{Informatik Studium / Promotion}
     \begin{itemize}
-    \item 2010 -- BA, Cambridge, UK
+    \item 2010 -- BA, Cambridge
     \item 2013 -- MSc, Saarbrücken
     \item \textit{bald} -- PhD, Saarbrücken
     \end{itemize}
     \structure{Wechsel in die Wirtschaft}
     \begin{itemize}
-    \item Bis April -- wiss. Mitarbeiter
-    \item Seit Juni -- dataWerks GmbH
+    \item Juni 2018
     \end{itemize}
-    \column{0.48\linewidth}
+    \column{0.47\linewidth}
     \centering
-    \includegraphics[scale=0.30]{img/europe-jk}
+    \includegraphics[scale=0.28]{img/europe-jk}
   \end{columns}
 \end{frame}
 
@@ -252,33 +251,33 @@
 \end{frame}
 
 
-\section{Aktorenmodell}
+\section{Actormodell}
 
 \begin{frame}
   \begin{center}
     \begin{Large}
-      \hl{-- Aktorenmodell --}
+      \hl{-- Actormodell --}
     \end{Large}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Ziel: Optimale Auslastung von Resourcen}
+  \frametitle{Ziel: Optimale Auslastung von Ressourcen}
   \begin{itemize}
   \item \textbf{Früher:} Multi-Core CPUs, heterogene Prozessor Architektur, Hyperthreading
   \item \textbf{Heute:} Vernetzte Systeme, Cloud
     \begin{itemize}
     \item Physisch: Server, Workstation, Cluster
-    \item Virtuell: Dünner Anwendungs-Container bis zum vollvirtualisierten OS
+    \item Virtuell: Vom schlanken Container bis zum voll virtualisierten OS
     \end{itemize}
   \end{itemize}
   \pause
   \structure{$\Rightarrow$ Wir brauchen Modelle für Nebenläufigkeit ($=$ logische Parallelität)}
   \vspace{1em}
   \pause
-  \begin{block}{Relevante Metriken:}
+  \begin{block}{Relevante Metriken}
     \begin{itemize}
-    \item Verständlichkeit / Ease of Use
+    \item Verständlichkeit / Benutzerfreundlichkeit
     \item Effizienz
     \item Skalierbarkeit / Elastizität
     \item Fehleranfälligkeit
@@ -311,23 +310,26 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Evaluierung}
+  \frametitle{Actormodell: Pro und Contra}
   \begin{itemize}
   \item Moderne CPUs haben lokale Caches an jedem Kern
+    \begin{itemize}
+    \item Einheitlicher, konsistenter Speicher ist unrealitisch
+    \end{itemize}
   \item Verteiltes Speichermodell skaliert zu Cloud-Anwendungen
   \item Nachrichtenaustausch ist Grundbaustein (TCP, REST, Mail, \ldots)
   \item Asynchroner Nachrichtenaustausch ist intuitiv
-  \item Aktoren sind logisch geschlossene Einheiten
+  \item Actors sind logisch geschlossene Einheiten
     \begin{itemize}
     \item erleichtert dynamische Topologien
     \item erleichtert Programmierung (weniger Bugs)
     \end{itemize}
-  \item Einziger Nachteil: Meist etwas weniger performant aufgrund der zusätzlich erforderlichen Kommunikationsebene.
+  \item Einziger Nachteil: Weniger performant aufgrund der zusätzlichen Kommunikationsebene
   \end{itemize}
   \vspace{1em}
   \pause
   \begin{block}{Fazit}
-    Das Aktorenmodell ist in fast allen Belangen die bessere Wahl.
+    Das Actormodell ist fast immer die bessere Wahl
   \end{block}
 \end{frame}
 
@@ -344,49 +346,64 @@
 \begin{frame}
   \frametitle{Projektübersicht, BA Thesis 2010}
   \begin{itemize}
-  \item Entwicklung eines Übersetzers inkl.\  Laufzeitumgebung
+  \item Entwicklung eines Compilers inkl.\  Laufzeitumgebung
   \item Objektsprache: \emph{\color{greenblue}Lucid} (Datenflusssprache) \mycite{Wadge und Ashcroft 1985}
+    \begin{itemize}
+    \item Primärer Datentyp: {\color{sbmcyan}Streams} (Stream-Algebra)
+    \end{itemize}
   \item Implementierungsprache: \emph{\color{greenblue}Scala} (JVM, objektorientiert und funktional)%
     \begin{itemize}
     \item Frontend: Parser-Kombinatoren
-    \item Backend/Laufzeitumgebung: {\color{sbmcyan}nebenläufiger Datenfluss-Simulator}
+    \item Backend / Laufzeitumgebung: {\color{sbmcyan}nebenläufiger Datenfluss-Simulator}
     \end{itemize}
   \item Ziel: Evaluierung der Skalierbarkeit
-  \item Motivation: Datenfluss-Semantik $\approx$ Aktorenmodell
+  \item Motivation: Datenfluss-Semantik $\approx$ Actormodell
+    \begin{itemize}
+    \item Semantik: Programm $=$ Datenfluss-Netzwerk
+    \item Vorwärts: Data-Driven, Push
+    \item Rückwerts: Demand-Driven, Pull
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Beispiel: Hamming Sequenz als Datenfluss-Diagramm}
   \begin{center}
-    \includegraphics[scale=0.30]{img/hamming}
+    \vspace{1em}
+    \includegraphics[scale=0.35]{img/hamming}
+    \vspace{1em}
     \begin{align*}
       \ham &= 1, {\color{sbdcyan}2}, {\color{sbmcyan}3}, {\color{sblcyan}4}, {\color{greenblue}5}, {\color{darkred}6}, {\color{darkyellow}8}, 9, 10, 12, 15, \ldots = [2^i3^j5^k \mid \forall i j k]\\
       \ham x \, 2 &= {\color{sbdcyan}2}, {\color{sblcyan}4}, {\color{darkred}6}, {\color{darkyellow}8}, 10, 12, 16, \ldots\\
       \ham x \, 3 &= {\color{sbmcyan}3}, {\color{darkred}6}, 9, 12, 15, 18, 24, \ldots\\
       \ham x \, 5 &= {\color{greenblue}5}, 10, 15, 20, 25, 30, 40, \ldots\\
     \end{align*}
-    \textit{Anm.: Heute würde man hierfür eher eine rekursive Definition in einer funktionalen Sprache wie z.B.\ Haskell wählen.}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Implementierung der Laufzeitumgebung}
+  \frametitle{Implementierung der simLucid Laufzeitumgebung}
   \begin{itemize}
-  \item Ein Aktor pro Operator
-  \item Jeder Aktor kennt seine Kind- und Elternknoten
-  \item Eingabe: AST des Datenfluss-Programms
-  \item Start: ein IO-Aktor der mit dem User interagiert
+  \item Ein Actor pro Operator ($+$,$-$, $\times$, $\mathop{fby}$, \ldots)
+  \item Jeder Actor kennt seine Kind- und Elternknoten
+    \begin{itemize}
+    \item Kindknoten = Operand
+    \end{itemize}
+  \item Eingabe: AST des Datenfluss-(Teil-)Programms
+  \item Start: ein IO-Actor der mit dem User interagiert
     \begin{itemize}
     \item Anfrage von Parametern
     \item Ausgabe von Resultaten
     \end{itemize}
   \item Evaluierung: Demand-Driven
     \begin{itemize}
-    \item IO-Knoten generiert Sequenz von Anfragen and den obersten Ausdrucksknoten für $t_0, t_1, t_2, \ldots$
+    \item IO-Knoten generiert Sequenz von Anfragen an den obersten Ausdrucksknoten für $t_0, t_1, t_2, \ldots$
     \end{itemize}
-  \item Aktornetzwerk wird bei Bedarf dynamisch aufgebaut
+  \item Actornetzwerk wird bei Bedarf dynamisch aufgebaut
   \item Verwaltung eines \textit{Telefonbuchs} für mehrfach benötigte Operanden
+    \begin{itemize}
+    \item \emph{\color{sbmcyan}Diese Buchhaltung war etwas unbefriedigend}
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -395,7 +412,7 @@
 \begin{frame}
   \begin{center}
     \begin{Large}
-      \hl{-- Aktoren heute und die Cloud --}
+      \hl{-- Das Actormodell heute / Cloud Deployment --}
     \end{Large}
   \end{center}
 \end{frame}
@@ -403,117 +420,124 @@
 \begin{frame}
   \frametitle{Wo stehen wir heute?}
   \begin{itemize}
-  \item Umfangreiche Aktor-Programmbibliotheken
+  \item Umfangreiche Actor-Programmbibliotheken
     \begin{itemize}
     \item z.B.\ Akka und Akka Streams\footnote{\url{https://akka.io/}} von Lightbend für Java und Scala
     \end{itemize}
-  \item Eingebaute Verwaltung von \emph{\color{greenblue}Aktorsystemen}
+  \item Eingebaute Verwaltung von \emph{\color{greenblue}Actorsystemen}
     \begin{itemize}
     \item Kein manuelles Telefonbuch mehr nötig
-    \item Koordinierung von großen Mengen von Aktoren
+    \item Koordinierung von großen Mengen von Actors
     \item Kontrollierter Spin-Up und Shutdown der Systeme
     \end{itemize}
   \item Reibungsloser Übergang von Intra- zu Inter-System-Kommunikation
-  \item Unterstützen die allgegenwärtigen Micro-Service Anwendungen
+  \item Kompatibel mit gängigen Micro-Service Frameworks
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Wo stehen wir heute?}
   \begin{itemize}
-  \item \structure{Big Data:} Map-Reduce, Hadoop, Kafka, Spark (im Prinzip FP)
-  \item \structure{Cloud Deployment:} Docker, Kubernetes, Helm, REST Nachrichten sind primäre Kommunikation
+  \item \structure{Big Data:} Map-Reduce, Hadoop, Kafka, Spark
+  \item \structure{Cloud Deployment:} Docker, Kubernetes, Helm, REST
   \end{itemize}
   \begin{center}
     \includegraphics[scale=0.7]{img/cloud-deploy}
   \end{center}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Moderne Anwendungen}
-  \begin{itemize}
-  \item Beispiel: Platform zur Indizierung und Analyse verteilter Datensilos
-  \item Micro-Service Design am Beispiel der Indizierung:
-    \begin{itemize}
-    \item Mehrere Services, mit quer verschalteten Aktorensystemen
-    \item Datenquellen werden parallel indiziert
-    \item Horizontale Bedarfs-Skalierung inklusive
-    \item Index Ablage in einem ElasticSearch Cluster
-    \end{itemize}
-  \item Inline Stream-Analysen können via Kafka zwischengeschaltet werden
-  \item Batch Analysen werden über Spark realisiert
-  \end{itemize}
-  \vspace{2em}
-  \pause
-  \begin{center}
-    \structure{Challenge:} Demonstration der Produkt-Features
-  \end{center}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Moderne Anwendungen}
+%   \begin{itemize}
+%   \item Beispiel: Platform zur Indizierung und Analyse verteilter Datensilos
+%   \item Micro-Service Design am Beispiel der Indizierung:
+%     \begin{itemize}
+%     \item Mehrere Services, mit quer verschalteten Actorsystemen
+%     \item Datenquellen werden parallel indiziert
+%     \item Horizontale Bedarfs-Skalierung inklusive
+%     \item Index Ablage in einem ElasticSearch Cluster
+%     \end{itemize}
+%   \item Inline Stream-Analysen können via Kafka zwischengeschaltet werden
+%   \item Batch Analysen werden über Spark realisiert
+%   \end{itemize}
+%   \vspace{2em}
+%   \pause
+%   \begin{center}
+%     \structure{Challenge:} Demonstration der Produkt-Features
+%   \end{center}
+% \end{frame}
 
-\section{Park-Simulation}
+% \section{Park-Simulation}
 
-\begin{frame}
-  \begin{center}
-    \begin{Large}
-      \hl{-- Fallstudie: Simulation eines Freizeitparks --}
-    \end{Large}
-  \end{center}
-\end{frame}
+% \begin{frame}
+%   \begin{center}
+%     \begin{Large}
+%       \hl{-- Fallstudie: Simulation eines Freizeitparks --}
+%     \end{Large}
+%   \end{center}
+% \end{frame}
 
-\begin{frame}
-  \frametitle{Projektübersicht, Freizeitpark Simulator, 2018}
-  \structure{Szenario}
-  \begin{itemize}
-  \item Fiktiver Freizeitpark
-  \item Besucher tragen Tracking-Geräte
-  \item Viele Aktionen erzeugen Event-Records
-  \item Bestimmte Probleme \emph{\color{greenblue}nur mittelbar} aus den Daten ableitbar
-  \item Komplexe JOINs und Aggregierung über mehrere Datenquellen
-  \end{itemize}
-  \pause
-  \structure{Projekt}
-  \begin{itemize}
-  \item Erzeugung von Datenquellen und Ereignissen mit Anomalien
-  \item Reine Zufallsgenerierung wird dem Problem nicht gerecht
-    \begin{itemize}
-    \item Simulation des Freizeitparkbetriebs mit Anomalie-Injektion
-    \end{itemize}
-  \end{itemize}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Projektübersicht, Freizeitpark Simulator, 2018}
+%   \structure{Szenario}
+%   \begin{itemize}
+%   \item Fiktiver Freizeitpark
+%   \item Besucher tragen Tracking-Geräte
+%   \item Viele Aktionen erzeugen Event-Records
+%   \item Bestimmte Probleme \emph{\color{greenblue}nur mittelbar} aus den Daten ableitbar
+%   \item Komplexe JOINs und Aggregierung über mehrere Datenquellen
+%   \end{itemize}
+%   \pause
+%   \structure{Projekt}
+%   \begin{itemize}
+%   \item Erzeugung von Datenquellen und Ereignissen mit Anomalien
+%   \item Reine Zufallsgenerierung wird dem Problem nicht gerecht
+%     \begin{itemize}
+%     \item Simulation des Freizeitparkbetriebs mit Anomalie-Injektion
+%     \end{itemize}
+%   \end{itemize}
+% \end{frame}
 
-\begin{frame}
-  \frametitle{Simulator}
-  \begin{itemize}
-  \item Ein Aktor je Besucher, ein Aktor je Scanner
-  \item Jeder Besucher-Aktor enthält seinen internen Zustand
-  \item Verhalten als \emph{\color{greenblue} probabilistischer NFA} modelliert
-  \item Transitionen lösen ggf.\ Interaktionen mit Scannern aus (Nachrichtenaustausch)
-  \item Scanner erzeugen bei Interaktionen Ereigniss-Records
-  \item Zwei Modi:
-    \begin{itemize}
-    \item Alle Komponenten laufen frei und lösen selbst NFA Transitionen aus
-    \item Transition von Komponenten nur bei externer Aufforderung
-    \end{itemize}
-  \item Analyse: Platform rekonstruiert die \emph{\color{greenblue}stillen Transitionen}
-  \end{itemize}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Simulator}
+%   \begin{itemize}
+%   \item Ein Actor je Besucher, ein Actor je Scanner
+%   \item Jeder Besucher-Actor enthält seinen internen Zustand
+%   \item Verhalten als \emph{\color{greenblue} probabilistischer NFA} modelliert
+%   \item Transitionen lösen ggf.\ Interaktionen mit Scannern aus (Nachrichtenaustausch)
+%   \item Scanner erzeugen bei Interaktionen Ereigniss-Records
+%   \item Zwei Modi:
+%     \begin{itemize}
+%     \item Alle Komponenten laufen frei und lösen selbst NFA Transitionen aus
+%     \item Transition von Komponenten nur bei externer Aufforderung
+%     \end{itemize}
+%   \item Analyse: Platform rekonstruiert die \emph{\color{greenblue}stillen Transitionen}
+%   \end{itemize}
+% \end{frame}
 
 \section*{Conclusion}
 
 \begin{frame}
   \frametitle{Zusammenfassung}
   \begin{itemize}
-  \item Aktoren liefern ein ideales Modell für nebenläufige Prozesse
+  \item Actors liefern ein ideales Modell für nebenläufige Prozesse
+    \begin{itemize}
+    \item lokale Anwendungen
+    \item verteilte Cloud-Anwendungen
+    \end{itemize}\pause
   \item Simulatoren sind rechenintensiv und auf Nebenläufigkeit angewiesen, \ldots \pause allerdings nur während sie auch wirklich laufen\pause
-  \item Cloud-Deployments liefern die nötige Elastizität
+    \begin{itemize}
+    \item Cloud-Deployments liefern die nötige Elastizität
+\end{itemize}
+
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \begin{center}
-    \begin{Large}
-      \hl{Vielen Dank für Ihre Aufmerksamkeit.}
-    \end{Large}
+    \begin{Huge}
+      \hl{Vielen Dank}
+    \end{Huge}
   \end{center}
 \end{frame}
 

@@ -138,7 +138,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -146,14 +146,14 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Focus"
-     style="display:none"
+     style="display:inline"
      transform="translate(2,1.2258524)">
     <path
        style="display:inline;fill:#9ef0b7;fill-opacity:1;stroke:#9ef0b7;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:5;stroke-opacity:1"
-       d="m 156.73433,117.77448 c -1.43031,5.73952 -6.00019,11.38588 -11.52819,13.49043 -11.26007,4.28679 -31.50531,1.27564 -35.81098,-4.90562 -7.90135,-11.34325 -18.643282,-18.17523 -26.490307,-17.90548 -12.315766,0.42337 -9.423978,-2.1713 -24.404615,3.66477 -12.031312,4.68709 -17.039118,5.31343 -31.519366,5.6559 -9.191005,0.21738 -13.189802,3.30896 -20.1130137,-8.09428 -8.3956316,-13.828466 2.4045506,-18.076146 2.943368,-33.358156 0.4506517,-12.78145 13.7740007,-18.64408 23.0563787,-25.2639 8.55709,-6.10258 25.042121,-2.74983 28.943119,-12.50931 3.100074,-7.75574 -13.30433,-15.46955 -9.811227,-23.05638 4.660998,-10.1234491 20.847444,-8.5240011 31.886485,-10.0565131 10.937578,-1.518426 22.123438,-0.09968 33.112888,0.981123 20.62698,2.028634 46.21953,-3.89535 61.32016,10.3017901 3.4245,3.2196 0.38458,9.96342 3.18865,13.73572 4.61001,6.20181 19.09234,3.868364 20.11301,11.52819 0.61089,4.584533 -5.07945,8.460983 -9.81122,9.811223 -14.63127,4.175121 -33.93406,5.544555 -41.69772,18.641324 -4.68455,7.902515 -2.34875,19.858828 2.20753,27.471436 3.48406,5.821143 6.05551,13.284923 4.41505,19.867733 z"
+       d="m 142.75333,83.435189 c -5.95258,3.892872 -14.46925,2.324699 -21.33258,0.458587 -7.04652,-1.915919 -16.79021,-4.434212 -18.64816,-11.496235 -1.85281,-7.042516 10.00825,-3.849868 10.54707,-19.131878 0.45065,-12.78145 -5.04564,-12.022506 -10.05651,-15.697955 C 95.954498,32.206839 85.029808,34.693474 77.018125,30.454572 70.355316,26.929347 58.708111,23.188895 59.848478,15.737735 61.167272,7.1207257 75.321646,7.0620429 83.885982,5.4359409 c 10.848656,-2.0598236 22.123438,-0.09968 33.112888,0.981123 20.62698,2.028634 46.21953,-3.89535 61.32016,10.3017901 3.4245,3.2196 0.38458,9.96342 3.18865,13.73572 4.61001,6.20181 19.09234,3.868364 20.11301,11.52819 0.61089,4.584533 -5.07945,8.460983 -9.81122,9.811223 -14.63127,4.175121 -17.80121,-0.69677 -25.99976,2.20752 -5.2156,1.847596 -10.15308,5.103937 -13.73571,9.320668 -4.7844,5.631202 -3.13648,16.068674 -9.32067,20.113014 z"
        id="path11877"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="aassssssaaaaaaaasasa" />
+       sodipodi:nodetypes="aaasaaaaaaaasaaa" />
     <ellipse
        style="fill:#2d9b72;fill-opacity:1;stroke:#2d9b72;stroke-width:0.90148532;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path5066"
@@ -167,7 +167,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(2,-85.774147)"
-     style="display:none">
+     style="display:inline">
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 32.744969,154.73724 85.112386,137.81288"
@@ -416,7 +416,7 @@
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="Linux"
-     style="display:none"
+     style="display:inline"
      transform="translate(2,1.2258524)">
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -427,7 +427,7 @@
     <path
        transform="translate(0,-87.000001)"
        style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m -2,84.867709 v 0"
+       d="m -2,85.774149 v 0"
        id="path10169"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -691,7 +691,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="Thesis"
-     style="display:none"
+     style="display:inline"
      transform="translate(2,1.2258524)">
     <path
        style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -810,7 +810,7 @@
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="Theory"
-     style="display:none"
+     style="display:inline"
      transform="translate(2,1.2258524)">
     <path
        style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
